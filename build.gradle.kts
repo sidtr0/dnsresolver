@@ -11,18 +11,6 @@ allprojects {
     repositories {
         mavenCentral()
     }
-
-    // Use Java 11 as the minimum version
-    java {
-        toolchain {
-            languageVersion.set(JavaLanguageVersion.of(11))
-        }
-    }
-
-    tasks.withType<JavaCompile> {
-        options.encoding = "UTF-8"
-        options.compilerArgs.add("-parameters")
-    }
 }
 
 // Common dependencies for all modules
@@ -44,7 +32,19 @@ fun DependencyHandlerScope.commonTestDependencies() {
 
 // Common configuration for non-application modules
 subprojects {
+
     apply(plugin = "java")
+
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
+    }
+
+    tasks.withType<JavaCompile> {
+        options.encoding = "UTF-8"
+        options.compilerArgs.add("-parameters")
+    }
 
     dependencies {
         // Common runtime dependencies
