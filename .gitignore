@@ -1,0 +1,44 @@
+# Gradle
+.gradle/
+build/
+**/build/
+# !gradle/wrapper/gradle-wrapper.jar
+
+# IDEA / IntelliJ
+.idea/
+*.iml
+*.iws
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# VS Code
+.vscode/
+
+# Build outputs
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Project Docs (local tracking)
+dns-project.md
+person1.md
+person2.md
+person3.md
+person4.md
+IMPLEMENTATION_PLAN.md
+
+# WinSW Service executable and temp files
+dns-resolver-service.exe
+dns-resolver-service.wrapper.log
+*err.log
+*out.log

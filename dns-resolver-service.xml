@@ -1,0 +1,19 @@
+<service>
+  <id>DnsResolver</id>
+  <name>Advanced DNS Resolver</name>
+  <description>High-performance local DNS resolver with DNS-over-HTTPS and smart caching</description>
+  <executable>java</executable>
+  <arguments>-Xms128m -Xmx512m -XX:+UseG1GC -jar "%BASE%\application\build\libs\dns-resolver.jar" --config "%BASE%\dns-resolver.yaml"</arguments>
+  <logmode>roll-by-size</logmode>
+  <logpath>%BASE%\logs</logpath>
+  <log>
+    <sizeThreshold>52428800</sizeThreshold>
+    <keepFiles>5</keepFiles>
+  </log>
+  <onfailure action="restart" delay="5 sec" />
+  <onfailure action="restart" delay="10 sec" />
+  <onfailure action="restart" delay="30 sec" />
+  <resetfailure>1 hour</resetfailure>
+  <startmode>Automatic</startmode>
+  <delayedAutoStart>false</delayedAutoStart>
+</service>

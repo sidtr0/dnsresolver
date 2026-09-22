@@ -1,0 +1,50 @@
+server:
+  listenAddress: "127.0.0.1"
+  port: 53
+  tcpEnabled: true
+  udpEnabled: true
+  workerThreads: 4
+  maxConnections: 1000
+  idleTimeoutSeconds: 30
+
+upstream:
+  strategy: "FASTEST" # FASTEST | ROUND_ROBIN | FAILOVER
+  timeoutMs: 2000
+  maxRetries: 2
+  healthCheckIntervalSeconds: 30
+  providers:
+    - name: "Cloudflare"
+      url: "https://1.1.1.1/dns-query"
+      bootstrapIp: "1.1.1.1"
+      enabled: true
+      weight: 100
+    - name: "Quad9"
+      url: "https://9.9.9.9/dns-query"
+      bootstrapIp: "9.9.9.9"
+      enabled: true
+      weight: 90
+    - name: "Google"
+      url: "https://8.8.8.8/dns-query"
+      bootstrapIp: "8.8.8.8"
+      enabled: true
+      weight: 80
+
+cache:
+  maximumSize: 10000
+  minTtlSeconds: 60
+  maxTtlSeconds: 86400
+  negativeTtlSeconds: 30
+  staleWhileRevalidate: true
+  staleWindowSeconds: 300
+  prefetchEnabled: true
+  prefetchThresholdQueries: 5
+  prefetchWindowSeconds: 60
+
+metrics:
+  enabled: true
+  httpPort: 8080
+  httpHost: "127.0.0.1"
+
+logging:
+  level: "INFO"
+  logQueries: false
