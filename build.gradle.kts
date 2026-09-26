@@ -86,7 +86,17 @@ project(":transport") {
 
 project(":cache") {
     dependencies {
+        // Internal module dependencies
+        implementation(project(":transport"))
+        implementation(project(":upstream"))
+
+        // Netty for DNS wire format handling
+        implementation("io.netty:netty-all:$nettyVersion")
+
+        // Caffeine for high-performance caching
         implementation("com.github.ben-manes.caffeine:caffeine:$caffeineVersion")
+
+        // Configuration
         implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     }
 }
